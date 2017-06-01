@@ -155,5 +155,57 @@ describe('All the tests', () => {
       })
     })
 
+    describe('GET /api/v1/sortup', (request, response) => {
+      it('should sort the items in alphabetical order', (done) => {
+        chai.request(server)
+        .get('/api/v1/sortup')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(2);
+          response.body[0].should.have.property('name')
+          response.body[0].name.should.equal('testshovel')
+          response.body[1].name.should.equal('testwheelbarrow')
+          done()
+        });
+      });
+
+      it('should return a status of 404 for a bad route', (done) => {
+        chai.request(server)
+        .get('/api/v1/sortupzzz')
+        .end((error, response) => {
+          response.should.have.status(404);
+          done()
+        });
+      })
+    })
+
+    describe('GET /api/v1/sortdown', (request, response) => {
+      it('should sort the items reverse alphabetical order', (done) => {
+        chai.request(server)
+        .get('/api/v1/sortdown')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(2);
+          response.body[0].should.have.property('name')
+          response.body[0].name.should.equal('testwheelbarrow')
+          response.body[1].name.should.equal('testshovel')
+          done()
+        });
+      });
+
+      it('should return a status of 404 for a bad route', (done) => {
+        chai.request(server)
+        .get('/api/v1/sortdownzzz')
+        .end((error, response) => {
+          response.should.have.status(404);
+          done()
+        });
+      })
+    })
+
   })
 })
