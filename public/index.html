@@ -7,12 +7,13 @@
     <link rel='stylesheet' href='styles.css'/>
   </head>
   <body>
+    <div id='page-wrap'>
     <h1 class='title'>It's a garage bin!</h1>
 
     <form class='junk-form'>
       <div class='add-items'>
         <input class='input-name' type='text' placeholder='Add item name here'/>
-        <input class='input-linger' type='text' placeholder='Why let this linger in here?'/>
+        <input class='input-linger' type='text' placeholder='Why let this linger?'/>
           <select class='cleanliness-selector' placeholder='Cleanliness'>
             <option value='' disable selected>How clean is this item?</option>
             <option class='drop-item' value='dusty'>dusty</option>
@@ -40,16 +41,17 @@
       <button class='sort-down'>Sort Down</button>
     </div>
 
-    <h1>Items</h1>
+    <h1 class='items-title'>Items</h1>
     <div class='main-container'>
-      <div class='garage-list'>
+      <div class='garage-list half'>
       </div>
 
-      <div class='single-item'>
+      <div class='single-item half'>
       </div>
     </div>
 
     <script src='./jquery.js'></script>
     <script src='./index.js'></script>
+  </div>
   </body>
 </html>
