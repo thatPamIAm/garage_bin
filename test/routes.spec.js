@@ -112,7 +112,6 @@ describe('All the tests', () => {
           name: 'hose', reason: 'just cus', cleanliness: 'dusty'
         })
         .end((error, response) => {
-          console.log(response.body)
           response.should.have.status(201);
           response.should.be.json;
 
@@ -131,10 +130,30 @@ describe('All the tests', () => {
 
           done()
         });
+      });
+    });
+
+    describe('GET /api/v1/junk/count/:cleanliness', (request, response) => {
+      it('should get counts for an item by cleanliness', (done) => {
+        chai.request(server)
+        .get('/api/v1/junk/count/dusty')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.equal(1);
+          done()
+        });
+      });
+
+      it('should return a status of 404 if there are no such items in the database', (done) => {
+        chai.request(server)
+        .get('/api/v1/junk/count/sparkling')
+        .end((error, response) => {
+          response.should.have.status(404);
+          done()
+        });
       })
     })
-
-
 
   })
 })
