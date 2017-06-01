@@ -14,13 +14,14 @@ h1 {
   font-size: 1.25em;
 }
 
+h3 {
+  margin: 10px 0px 10px 20px;
+}
+
 input {
   font-size: 1em;
 }
 
-h3 {
-  text-align: center;
-}
 
 button {
   font-size: 1.25em;
@@ -91,6 +92,9 @@ button {
   flex:1
 }
 
+.main-item {
+  display: block;
+}
 .item-name {
   font-size: 2em;
 }
