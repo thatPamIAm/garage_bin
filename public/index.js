@@ -14,7 +14,7 @@ $('.submit-button').on('click', (e) => {
 });
 
 // Get all the items in DB
-getAllItems = () => {
+const getAllItems = () => {
   fetch('/api/v1/junk')
   .then(response => response.json())
   .then(items => {
