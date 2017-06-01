@@ -55,7 +55,7 @@ app.get('/api/v1/junk/count/:cleanliness', (request, response) => {
         error: 'There are no items with that type of cleanliness'
       })
     } else {
-      response.status(200).json(junk.length)      
+      response.status(200).json(junk.length)
     }
   })
   .catch(error => {
@@ -90,6 +90,28 @@ app.post('/api/v1/junk', (request, response) => {
     });
   }
 });
+
+// sort up
+app.get('/api/v1/sortup', (request, response) => {
+  database('junk').select().orderBy('name', 'asc')
+    .then((junk) => {
+      response.status(200).json(junk)
+    })
+    .catch((error) => {
+      response.status(500).send({ error })
+    })
+})
+
+// sort reverse
+app.get('/api/v1/sortdown', (request, response) => {
+  database('junk').select().orderBy('name', 'desc')
+    .then((junk) => {
+      response.status(200).json(junk)
+    })
+    .catch((error) => {
+      response.status(500).send({ error })
+    })
+})
 
 app.listen(app.get('port'), () => {
   console.log(`Garage_bin is running on ${app.get('port')}.`)
