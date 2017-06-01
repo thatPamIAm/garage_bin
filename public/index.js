@@ -68,6 +68,7 @@ const appendItemName = (name) => {
 };
 
 const appendFullItemDetails = (name, reason, cleanliness) => {
+  clearFullItemDetails();
   $('.single-item').append(`
     <div>
       <h3 class='item-name'>${name}</h3>
@@ -82,4 +83,8 @@ const clearInputs = () => {
   $('.input-name').val('')
   $('.input-linger').val('')
   $('.cleanliness-selector').val('')
+};
+
+const clearFullItemDetails = () => {
+  $('.single-item').empty();
 };
