@@ -13,6 +13,10 @@ $('.submit-button').on('click', (e) => {
   addItem($name, $reason, $cleanliness)
 });
 
+$('.garage-list').on('click', '.item-name', (e) => {
+  const itemName = e.target.innerHTML
+});
+
 // Get all the items in DB
 const getAllItems = () => {
   fetch('/api/v1/junk')
@@ -45,7 +49,7 @@ const addItem = (name, reason, cleanliness) => {
 const appendItem = (name) => {
   $('.garage-list').append(`
     <div>
-      <h3 class='test'>${name}</h3>
+      <h3 class='item-name'>${name}</h3>
     </div>
   `)
 };
