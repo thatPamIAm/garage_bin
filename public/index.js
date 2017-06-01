@@ -112,8 +112,12 @@ const appendFullItemDetails = (name, reason, cleanliness) => {
   clearFullItemDetails();
   $('.single-item').append(`
     <div>
-      <h3 class='item-name'>${name}</h3>
+      <h3 class='item-name'>Individual Item</h3>
+      <hr>
+      <h3 class='item-name main-item'>${name}</h3>
+      <h3 class='item-linger'>The reason this item is stored:</h3>
       <h3 class='item-linger'>${reason}</h3>
+      <h3 class='item-cleanliness'>The current condition of this item:</h3>
       <h3 class='item-cleanliness'>${cleanliness}</h3>
     </div>
   `)
