@@ -4,7 +4,7 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         knex('junk').insert([
           { name: 'shovel', reason: 'digging holes', cleanliness: 'dusty'},
-          { name: 'wheelbarrow', reason: 'filling holes', clealiness: 'rancid'}
+          { name: 'wheelbarrow', reason: 'filling holes', cleanliness: 'rancid'}
         ])
       ]) //end return Promise.all
     });
