@@ -14,8 +14,20 @@ $('.submit-button').on('click', (e) => {
 });
 
 $('.garage-list').on('click', '.item-name', (e) => {
-  const itemName = e.target.innerHTML
+  const itemName = e.target.innerHTML;
+  getSingleItem(itemName);
 });
+
+const getSingleItem = (name) => {
+  fetch(`/api/v1/junk/${name}`)
+  .then(response => response.json())
+  .then(item => {
+    item.forEach((details) => {
+      appendFullItemDetails(details.name, details.reason, details.cleanliness)
+    })
+  })
+  .catch(e => console.log('Unable to get a single item'))
+};
 
 // Get all the items in DB
 const getAllItems = () => {
@@ -23,7 +35,7 @@ const getAllItems = () => {
   .then(response => response.json())
   .then(items => {
     items.map((item) => {
-      appendItem(item.name)
+      appendItemName(item.name)
     })
   })
   .catch(e => console.log('Unable to fetch items'))
@@ -42,11 +54,12 @@ const addItem = (name, reason, cleanliness) => {
   })
   .then(response => response.json())
   .then((junk) => {
-    appendItem(junk.name)
+    appendItemName(junk.name)
   })
 };
 
-const appendItem = (name) => {
+// Append item to the DOM
+const appendItemName = (name) => {
   $('.garage-list').append(`
     <div>
       <h3 class='item-name'>${name}</h3>
@@ -54,6 +67,17 @@ const appendItem = (name) => {
   `)
 };
 
+const appendFullItemDetails = (name, reason, cleanliness) => {
+  $('.single-item').append(`
+    <div>
+      <h3 class='item-name'>${name}</h3>
+      <h3 class='item-linger'>${reason}</h3>
+      <h3 class='item-cleanliness'>${cleanliness}</h3>
+    </div>
+  `)
+}
+
+// Clear Fields
 const clearInputs = () => {
   $('.input-name').val('')
   $('.input-linger').val('')
