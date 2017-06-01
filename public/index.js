@@ -26,6 +26,11 @@ const getCount = () => {
     .then(json => {
       document.querySelector('.count').innerHTML = json.length
     })
+};
+
+// Get counts based on cleanliness
+const getCountForCleanliness = () => {
+  
 }
 
 
