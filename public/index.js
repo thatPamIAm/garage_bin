@@ -1,6 +1,7 @@
 // Fetch from DB on page load
 $(document).ready(() => {
   getAllItems();
+  getCount()
 })
 
 // event listeners
@@ -10,7 +11,7 @@ $('.submit-button').on('click', (e) => {
   let $reason = $('.input-linger').val();
   let $cleanliness = $('.cleanliness-selector').val();
   clearInputs();
-  addItem($name, $reason, $cleanliness)
+  addItem($name, $reason, $cleanliness);
 });
 
 $('.garage-list').on('click', '.item-name', (e) => {
@@ -18,6 +19,17 @@ $('.garage-list').on('click', '.item-name', (e) => {
   getSingleItem(itemName);
 });
 
+// Get item count from DB
+const getCount = () => {
+    fetch('/api/v1/junk')
+    .then(response => response.json())
+    .then(json => {
+      document.querySelector('.count').innerHTML = json.length
+    })
+}
+
+
+// Get single item from DB
 const getSingleItem = (name) => {
   fetch(`/api/v1/junk/${name}`)
   .then(response => response.json())
@@ -41,7 +53,7 @@ const getAllItems = () => {
   .catch(e => console.log('Unable to fetch items'))
 }
 
-// Add a single item to DB and dom
+// Add a single item to DB
 const addItem = (name, reason, cleanliness) => {
   fetch('/api/v1/junk', {
     method: 'POST',
@@ -55,10 +67,12 @@ const addItem = (name, reason, cleanliness) => {
   .then(response => response.json())
   .then((junk) => {
     appendItemName(junk.name)
+    getCount();
   })
+  .catch(e => console.log('Cannot append items'))
 };
 
-// Append item to the DOM
+// Append single item to the DOM
 const appendItemName = (name) => {
   $('.garage-list').append(`
     <div>
