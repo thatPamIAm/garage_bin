@@ -1,3 +1,9 @@
+// Fetch from DB on page load
+$(document).ready(() => {
+  getAllItems();
+})
+
+// event listeners
 $('.submit-button').on('click', (e) => {
   e.preventDefault();
   let $name = $('.input-name').val();
@@ -7,12 +13,19 @@ $('.submit-button').on('click', (e) => {
   addItem($name, $reason, $cleanliness)
 });
 
-const clearInputs = () => {
-    $('.input-name').val('')
-    $('.input-linger').val('')
-    $('.cleanliness-selector').val('')
-};
+// Get all the items in DB
+getAllItems = () => {
+  fetch('/api/v1/junk')
+  .then(response => response.json())
+  .then(items => {
+    items.map((item) => {
+      appendItem(item.name)
+    })
+  })
+  .catch(e => console.log('Unable to fetch items'))
+}
 
+// Add a single item to DB and dom
 const addItem = (name, reason, cleanliness) => {
   fetch('/api/v1/junk', {
     method: 'POST',
@@ -32,7 +45,13 @@ const addItem = (name, reason, cleanliness) => {
 const appendItem = (name) => {
   $('.garage-list').append(`
     <div>
-      <h3>${name}</h3>
+      <h3 class='test'>${name}</h3>
     </div>
   `)
+};
+
+const clearInputs = () => {
+  $('.input-name').val('')
+  $('.input-linger').val('')
+  $('.cleanliness-selector').val('')
 };
