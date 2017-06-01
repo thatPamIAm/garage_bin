@@ -36,7 +36,7 @@ app.get('/api/v1/junk/:name', (request, response) => {
       if(!junk.length) {
         response.status(404).send({
           error: 'There is no such item in the garage'
-        });
+        })
       } else {
         response.status(200).json(junk)
       }
@@ -46,7 +46,24 @@ app.get('/api/v1/junk/:name', (request, response) => {
     })
 })
 
-//post request for adding that junk
+// Get counts for cleanliness
+app.get('/api/v1/junk/count/:cleanliness', (request, response) => {
+  database('junk').where('cleanliness', request.params.cleanliness).select()
+  .then(junk => {
+    if(!junk.length) {
+      response.status(404).send({
+        error: 'There are no items with that type of cleanliness'
+      })
+    } else {
+      response.status(200).json(junk.length)      
+    }
+  })
+  .catch(error => {
+    response.status(500).send({ error })
+  })
+})
+
+// Post request for adding that junk
 app.post('/api/v1/junk', (request, response) => {
   const { name, reason, cleanliness } = request.body;
   const junk = request.body;
