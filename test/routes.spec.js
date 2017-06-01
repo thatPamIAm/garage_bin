@@ -93,9 +93,39 @@ describe('All the tests', () => {
         });
       });
 
-      it('should return a 404 erro for a non-existent junk route', (done) => {
+      it('should return a 404 error for a non-existent junk route', (done) => {
         chai.request(server)
         .get('/api/v1/junk/rake')
+        .end((error, response) => {
+          response.should.have.status(404);
+
+          done()
+        });
+      })
+    })
+
+    describe('POST /api/v1/junk', (request, response) => {
+      it('should post a single item', (done) => {
+        chai.request(server)
+        .post('/api/v1/junk')
+        .send({
+          name: 'hose', reason: 'just cus', cleanliness: 'dusty'
+        })
+        .end((error, response) => {
+          console.log(response.body)
+          response.should.have.status(201);
+          response.should.be.json;
+
+          done()
+        });
+      });
+
+      it('should not allow a post for a non-existent route', (done) => {
+        chai.request(server)
+        .post('/api/v1/junkzzz')
+        .send({
+          name: 'hose', reason: 'just cus', cleanliness: 'dusty'
+        })
         .end((error, response) => {
           response.should.have.status(404);
 
