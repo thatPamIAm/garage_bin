@@ -18,16 +18,16 @@ describe('All the tests', () => {
       return database.seed.run();
     })
     .then(() => {
-      done();
-    });
-  });
+      done()
+    })
+  })
 
   afterEach((done) => {
     database.seed.run()
     .then(() => {
-      done();
-    });
-  });
+      done()
+    })
+  })
 
   describe('Client Routes', () => {
     it('should return homepage with html text', (done) => {
@@ -45,7 +45,7 @@ describe('All the tests', () => {
     it('should return a 404 for a non existent route', (done) => {
       chai.request(server)
       .get('/sosad')
-      .end((err, response) => {
+      .end((error, response) => {
         response.should.have.status(404)
         done()
       })
@@ -53,6 +53,21 @@ describe('All the tests', () => {
   })
 
   describe('API Routes', () => {
+
+    describe('GET /api/v1/junk', (request, response) => {
+      it('should return all of the junk', (done) => {
+        chai.request(server)
+        .get('/api/v1/junk')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(2);
+
+          done()
+        });
+      });
+    })
 
   })
 })
