@@ -1,5 +1,6 @@
 body, html {
   height: 100%;
+  text-align: center;
 }
 
 span {
@@ -9,10 +10,15 @@ span {
 
 h1 {
   font-size: 1.25em;
+  margin-bottom: 40px;
 }
 
 input {
   font-size: 1em;
+}
+
+h3 {
+  text-align: center;
 }
 
 button {
@@ -25,6 +31,16 @@ button {
   margin: 20px;
 }
 
+#page-wrap {
+  text-align: left;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.cleanliness-selector {
+  font-size: 1.10em;
+}
+
 .btn-container {
   display: flex;
   justify-content: center;
@@ -33,6 +49,11 @@ button {
 .title {
   font-size: 3em;
   text-align: center;
+}
+
+.items-title {
+  text-align: center;
+  font-size: 4em;
 }
 
 .main-container {
@@ -46,6 +67,11 @@ button {
   margin: 10px;
 }
 
+.half {
+  border: solid 1px black;
+  margin: 10px;
+}
+
 .garage-list {
   flex:1;
 }
@@ -53,4 +79,8 @@ button {
 .single-item {
   background-color: lime;
   flex:1
+}
+
+.item-name {
+  font-size: 2em;
 }
