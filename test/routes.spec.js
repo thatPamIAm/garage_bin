@@ -67,6 +67,16 @@ describe('All the tests', () => {
           done()
         });
       });
+
+      it('should return a 404 erro for a non-existent junk route', (done) => {
+        chai.request(server)
+        .get('/api/v1/junkzzz')
+        .end((error, response) => {
+          response.should.have.status(404);
+
+          done()
+        });
+      })
     })
 
   })
