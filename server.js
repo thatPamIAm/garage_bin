@@ -29,6 +29,51 @@ app.get('/api/v1/junk', (request, response) => {
     });
 });
 
+// Get a single junk item
+app.get('/api/v1/junk/:name', (request, response) => {
+  database('junk').where('name', request.params.name).select()
+    .then(junk => {
+      if(!junk.length) {
+        response.status(404).send({
+          error: 'There is no such item in the garage'
+        });
+      } else {
+        response.status(200).json(junk)
+      }
+    })
+    .catch(error => {
+      response.status(500).send({ error });
+    })
+})
+
+//post request for adding that junk
+app.post('/api/v1/junk', (request, response) => {
+  const { name, reason, cleanliness } = request.body;
+  const junk = request.body;
+
+  if (!name) {
+    response.status(422).send ({
+      error: 'You are missing a name'
+    })
+  } else if (!reason) {
+    response.status(422).send ({
+      error: 'You are missing a reason'
+    })
+  } else if (!cleanliness) {
+    response.status(422).send ({
+      error: 'You are missing a cleanliness rating'
+    })
+  } else {
+  database('junk').insert(junk)
+    .then(junk => {
+      response.status(201).json({ name: name, reason: reason, cleanliness:cleanliness })
+    })
+    .catch(error => {
+      response.status(500).send({ error });
+    });
+  }
+});
+
 app.listen(app.get('port'), () => {
   console.log(`Garage_bin is running on ${app.get('port')}.`)
 });
