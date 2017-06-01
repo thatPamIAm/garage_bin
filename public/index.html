@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Garage_bin</title>
+    <link rel='stylesheet' href='reset.css'/>
     <link rel='stylesheet' href='styles.css'/>
   </head>
   <body>
-    <h1>It's a garage bin!</h1>
+    <h1 class='title'>It's a garage bin!</h1>
 
     <form class='junk-form'>
-      <section class='add-items'>
+      <div class='add-items'>
         <input class='input-name' type='text' placeholder='Add item name here'/>
         <input class='input-linger' type='text' placeholder='Why let this linger in here?'/>
           <select class='cleanliness-selector' placeholder='Cleanliness'>
@@ -19,29 +20,33 @@
             <option class='drop-item' value='sparkling'>sparkling</option>
           </select>
         <input class='submit-button' type='submit' value='Add this item to the garage!'/>
-      </section>
+      </div>
     </form>
 
 
     <div class='garage-summary'>
-      <h1>Items in the Garage</h1>
+      <h1>Items in the Garage:</h1>
       <span class='count'></span>
-      <h1>Sparkling Items</h1>
+      <h1>Sparkling Items:</h1>
       <span class='sparkling-count'></span>
-      <h1>Dusty Items</h1>
+      <h1>Dusty Items:</h1>
       <span class='dusty-count'></span>
-      <h1>Rancid Items</h1>
+      <h1>Rancid Items:</h1>
       <span class='rancid-count'></span>
     </div>
 
-    <button class='sort-up'>Sort Up</button>
-    <button class='sort-down'>Sort Down</button>
-    
-    <div class='garage-list'>
-      <h1>Items</h1>
+    <div class='btn-container'>
+      <button class='sort-up'>Sort Up</button>
+      <button class='sort-down'>Sort Down</button>
     </div>
 
-    <div class='single-item'>
+    <h1>Items</h1>
+    <div class='main-container'>
+      <div class='garage-list'>
+      </div>
+
+      <div class='single-item'>
+      </div>
     </div>
 
     <script src='./jquery.js'></script>
