@@ -1,7 +1,8 @@
 // Fetch from DB on page load
 $(document).ready(() => {
   getAllItems();
-  getCount()
+  getCount();
+  updateAllCounts();
 })
 
 // event listeners
@@ -28,10 +29,20 @@ const getCount = () => {
     })
 };
 
+const updateAllCounts = () => {
+  getCountForCleanliness('sparkling')
+  getCountForCleanliness('rancid')
+  getCountForCleanliness('dusty')
+};
+
 // Get counts based on cleanliness
-const getCountForCleanliness = () => {
-  
-}
+const getCountForCleanliness = (cleanliness) => {
+  fetch(`/api/v1/junk/count/${cleanliness}`)
+  .then(response => response.json())
+  .then(count => {
+      document.querySelector(`.${cleanliness}-count`).innerHTML = count
+    })
+  }
 
 
 // Get single item from DB
@@ -72,7 +83,8 @@ const addItem = (name, reason, cleanliness) => {
   .then(response => response.json())
   .then((junk) => {
     appendItemName(junk.name)
-    getCount();
+    getCount()
+    updateAllCounts()
   })
   .catch(e => console.log('Cannot append items'))
 };
