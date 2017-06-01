@@ -3,9 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Garage_bin</title>
+    <link rel='stylesheet' href='styles.css'/>
   </head>
   <body>
     <h1>It's a garage bin!</h1>
+
+    <form class='junk-form'>
+      <section class='add-items'>
+        <input class='input-name' type='text' placeholder='Add item name here'/>
+        <input class='input-linger' type='text' placeholder='Why let this linger in here?'/>
+          <select class='cleanliness-selector' placeholder='Ceanliness'>
+            <option value='' disable selected>How clean is this item?</option>
+            <option class='drop-item' value='dusty'>dusty</option>
+            <option class='drop-item' value='rancid'>rancid</option>
+            <option class='drop-item' value='sparkling'>sparkling</option>
+          </select>
+
+    </form>
 
   </body>
 </html>
