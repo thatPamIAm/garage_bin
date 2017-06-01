@@ -20,6 +20,16 @@ $('.garage-list').on('click', '.item-name', (e) => {
   getSingleItem(itemName);
 });
 
+$('.sort-up').on('click', () => {
+  clearGarage();
+  sortUp();
+})
+
+$('.sort-down').on('click', () => {
+  clearGarage();
+  sortDown();
+})
+
 // Get item count from DB
 const getCount = () => {
     fetch('/api/v1/junk')
@@ -29,6 +39,7 @@ const getCount = () => {
     })
 };
 
+// Update all counts
 const updateAllCounts = () => {
   getCountForCleanliness('sparkling')
   getCountForCleanliness('rancid')
@@ -43,7 +54,6 @@ const getCountForCleanliness = (cleanliness) => {
       document.querySelector(`.${cleanliness}-count`).innerHTML = count
     })
   }
-
 
 // Get single item from DB
 const getSingleItem = (name) => {
@@ -109,6 +119,29 @@ const appendFullItemDetails = (name, reason, cleanliness) => {
   `)
 }
 
+// Sorting list items
+const sortUp = () => {
+  fetch('/api/v1/sortup')
+  .then(response => response.json())
+  .then(json => {
+    json.map((junk) => {
+      appendItemName(junk.name)
+    })
+  })
+  .catch(e => console.log('whatever'))
+}
+
+const sortDown = () => {
+  fetch('/api/v1/sortdown')
+  .then(response => response.json())
+  .then(json => {
+    json.map((junk) => {
+      appendItemName(junk.name)
+    })
+  })
+  .catch(e => console.log('whatever'))
+}
+
 // Clear Fields
 const clearInputs = () => {
   $('.input-name').val('')
@@ -119,3 +152,7 @@ const clearInputs = () => {
 const clearFullItemDetails = () => {
   $('.single-item').empty();
 };
+
+const clearGarage = () => {
+  $('.garage-list').empty();
+}
