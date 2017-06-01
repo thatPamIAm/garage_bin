@@ -5,6 +5,9 @@ module.exports = {
     migrations: {
       directory: './db/migrations'
     },
+    seeds: {
+      directory: './db/seeds/dev'
+    },
     useNullAsDefault: true
   },
 
@@ -14,6 +17,9 @@ module.exports = {
     migrations: {
       directory: './db/migrations'
     },
+    seeds: {
+      directory: './db/seeds/test'
+    },
     useNullAsDefault: true
   },
 
@@ -22,6 +28,9 @@ module.exports = {
     connection: 'postgres://localhost/garage_bin',
     migrations: {
       directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/seeds/dev'
     },
     useNullAsDefault: true
   }
