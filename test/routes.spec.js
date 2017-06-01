@@ -79,5 +79,32 @@ describe('All the tests', () => {
       })
     })
 
+    describe('GET /api/v1/junk/:name', (request, response) => {
+      it('should return a single item by name', (done) => {
+        chai.request(server)
+        .get('/api/v1/junk/testshovel')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.length.should.equal(1);
+
+          done()
+        });
+      });
+
+      it('should return a 404 erro for a non-existent junk route', (done) => {
+        chai.request(server)
+        .get('/api/v1/junk/rake')
+        .end((error, response) => {
+          response.should.have.status(404);
+
+          done()
+        });
+      })
+    })
+
+
+
   })
 })
