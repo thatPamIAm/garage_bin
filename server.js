@@ -12,6 +12,8 @@ const database = require('knex')(configuration);
 
 app.set('port', process.env.PORT || 3000);
 
+// ===================================================================
+// GET routes
 app.get('/', (request, response) => {
   fs.readFile(`${__dirname}/index.html`, (err, file) => {
     response.send(file)
@@ -63,7 +65,8 @@ app.get('/api/v1/junk/count/:cleanliness', (request, response) => {
   })
 })
 
-// Post request for adding that junk
+// ======================================================================
+// POST request for adding that junk
 app.post('/api/v1/junk', (request, response) => {
   const { name, reason, cleanliness } = request.body;
   const junk = request.body;
@@ -91,7 +94,9 @@ app.post('/api/v1/junk', (request, response) => {
   }
 });
 
-// sort up
+
+// =========================================================================
+// GET requests for sorting
 app.get('/api/v1/sortup', (request, response) => {
   database('junk').select().orderBy('name', 'asc')
     .then((junk) => {
