@@ -18,16 +18,16 @@ describe('All the tests', () => {
       return database.seed.run();
     })
     .then(() => {
-      done()
-    })
-  })
+      done();
+    });
+  });
 
   afterEach((done) => {
     database.seed.run()
     .then(() => {
-      done()
-    })
-  })
+      done();
+    });
+  });
 
   describe('Client Routes', () => {
     it('should return homepage with html text', (done) => {
@@ -36,7 +36,6 @@ describe('All the tests', () => {
       .end((error, response) => {
         response.should.have.status(200);
         response.should.be.html;
-
         done();
 
       });
@@ -46,14 +45,13 @@ describe('All the tests', () => {
       chai.request(server)
       .get('/sosad')
       .end((error, response) => {
-        response.should.have.status(404)
-        done()
-      })
-    })
-  })
+        response.should.have.status(404);
+        done();
+      });
+    });
+  });
 
   describe('API Routes', () => {
-
     describe('GET /api/v1/junk', (request, response) => {
       it('should return all of the junk', (done) => {
         chai.request(server)
@@ -63,8 +61,7 @@ describe('All the tests', () => {
           response.should.be.json;
           response.body.should.be.a('array');
           response.body.length.should.equal(2);
-
-          done()
+          done();
         });
       });
 
@@ -73,11 +70,10 @@ describe('All the tests', () => {
         .get('/api/v1/junkzzz')
         .end((error, response) => {
           response.should.have.status(404);
-
-          done()
+          done();
         });
-      })
-    })
+      });
+    });
 
     describe('GET /api/v1/junk/:name', (request, response) => {
       it('should return a single item by name', (done) => {
@@ -88,8 +84,7 @@ describe('All the tests', () => {
           response.should.be.json;
           response.body.should.be.a('array');
           response.body.length.should.equal(1);
-
-          done()
+          done();
         });
       });
 
@@ -98,11 +93,10 @@ describe('All the tests', () => {
         .get('/api/v1/junk/rake')
         .end((error, response) => {
           response.should.have.status(404);
-
-          done()
+          done();
         });
-      })
-    })
+      });
+    });
 
     describe('POST /api/v1/junk', (request, response) => {
       it('should post a single item', (done) => {
@@ -114,8 +108,7 @@ describe('All the tests', () => {
         .end((error, response) => {
           response.should.have.status(201);
           response.should.be.json;
-
-          done()
+          done();
         });
       });
 
@@ -127,8 +120,7 @@ describe('All the tests', () => {
         })
         .end((error, response) => {
           response.should.have.status(404);
-
-          done()
+          done();
         });
       });
     });
@@ -141,7 +133,7 @@ describe('All the tests', () => {
           response.should.have.status(200);
           response.should.be.json;
           response.body.should.equal(1);
-          done()
+          done();
         });
       });
 
@@ -152,8 +144,8 @@ describe('All the tests', () => {
           response.should.have.status(404);
           done()
         });
-      })
-    })
+      });
+    });
 
     describe('GET /api/v1/sortup', (request, response) => {
       it('should sort the items in alphabetical order', (done) => {
@@ -164,10 +156,10 @@ describe('All the tests', () => {
           response.should.be.json;
           response.body.should.be.a('array');
           response.body.length.should.equal(2);
-          response.body[0].should.have.property('name')
-          response.body[0].name.should.equal('testshovel')
-          response.body[1].name.should.equal('testwheelbarrow')
-          done()
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('testshovel');
+          response.body[1].name.should.equal('testwheelbarrow');
+          done();
         });
       });
 
@@ -176,10 +168,10 @@ describe('All the tests', () => {
         .get('/api/v1/sortupzzz')
         .end((error, response) => {
           response.should.have.status(404);
-          done()
+          done();
         });
-      })
-    })
+      });
+    });
 
     describe('GET /api/v1/sortdown', (request, response) => {
       it('should sort the items reverse alphabetical order', (done) => {
@@ -190,10 +182,10 @@ describe('All the tests', () => {
           response.should.be.json;
           response.body.should.be.a('array');
           response.body.length.should.equal(2);
-          response.body[0].should.have.property('name')
-          response.body[0].name.should.equal('testwheelbarrow')
-          response.body[1].name.should.equal('testshovel')
-          done()
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('testwheelbarrow');
+          response.body[1].name.should.equal('testshovel');
+          done();
         });
       });
 
@@ -206,6 +198,5 @@ describe('All the tests', () => {
         });
       });
     });
-
   });
 });
