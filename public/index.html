@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Garage_bin</title>
-    <link rel='stylesheet' href='reset.css'/>
-    <link rel='stylesheet' href='styles.css'/>
-  </head>
-  <body>
-    <div id='page-wrap'>
+<head>
+  <meta charset="utf-8">
+  <title>Garage_bin</title>
+  <link rel='stylesheet' href='reset.css'/>
+  <link rel='stylesheet' href='styles.css'/>
+</head>
+<body>
+  <div id='page-wrap'>
     <h1 class='title'>Pam's Garage Bin</h1>
 
     <form class='junk-form'>
       <div class='add-items'>
         <input class='input-name' type='text' placeholder='Add item name here'/>
         <input class='input-linger' type='text' placeholder='Why let this linger?'/>
-          <select class='cleanliness-selector' placeholder='Cleanliness'>
-            <option value='' disable selected>How clean is this item?</option>
-            <option class='drop-item' value='dusty'>dusty</option>
-            <option class='drop-item' value='rancid'>rancid</option>
-            <option class='drop-item' value='sparkling'>sparkling</option>
-          </select>
+        <select class='cleanliness-selector' placeholder='Cleanliness'>
+          <option value='' disable selected>How clean is this item?</option>
+          <option class='drop-item' value='dusty'>dusty</option>
+          <option class='drop-item' value='rancid'>rancid</option>
+          <option class='drop-item' value='sparkling'>sparkling</option>
+        </select>
         <input class='submit-button' type='submit' value='Add this item to the garage!'/>
       </div>
     </form>
@@ -42,25 +42,25 @@
     </div>
 
 
-        <h1 class='items-title'>Items</h1>
-        <section class='tab-section'>
-              <section class='tab first-tab'>
-                <input class='garage-input' id='tab-1' type='radio' name='tabs'>
-                <label class='accordion' for='tab-1'>Push Here to Check the Garage</label>
-                <section class='panel'>
-        <div class='main-container'>
-          <div class='garage-list half'>
-          </div>
+    <h1 class='items-title'>Items</h1>
+    <section class='tab-section'>
+      <section class='tab first-tab'>
+        <input class='garage-input' id='tab-1' type='radio' name='tabs'>
+        <label class='accordion' for='tab-1'>Push Here to Check the Garage</label>
+        <section class='panel'>
+          <div class='main-container'>
+            <div class='garage-list half'>
+            </div>
 
-          <div class='single-item half'>
+            <div class='single-item half'>
+            </div>
           </div>
-        </div>
+        </section>
       </section>
-   </section>
-  </section>
+    </section>
 
     <script src='./jquery.js'></script>
     <script src='./index.js'></script>
   </div>
-  </body>
+</body>
 </html>
