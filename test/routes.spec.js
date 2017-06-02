@@ -99,7 +99,7 @@ describe('All the tests', () => {
     });
 
     describe('POST /api/v1/junk', (request, response) => {
-      it('should post a single item', (done) => {
+      it.skip('should post a single item', (done) => {
         chai.request(server)
         .post('/api/v1/junk')
         .send({
