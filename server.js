@@ -16,7 +16,7 @@ app.set('port', process.env.PORT || 3000);
 // GET routes
 app.get('/', (request, response) => {
   fs.readFile(`${__dirname}/index.html`, (err, file) => {
-    response.send(file)
+    response.send(file);
   });
 });
 
@@ -35,35 +35,35 @@ app.get('/api/v1/junk', (request, response) => {
 app.get('/api/v1/junk/:name', (request, response) => {
   database('junk').where('name', request.params.name).select()
     .then(junk => {
-      if(!junk.length) {
+      if (!junk.length) {
         response.status(404).send({
           error: 'There is no such item in the garage'
         })
       } else {
-        response.status(200).json(junk)
+        response.status(200).json(junk);
       }
     })
     .catch(error => {
       response.status(500).send({ error });
-    })
-})
+    });
+});
 
 // Get counts for cleanliness
 app.get('/api/v1/junk/count/:cleanliness', (request, response) => {
   database('junk').where('cleanliness', request.params.cleanliness).select()
   .then(junk => {
-    if(!junk.length) {
+    if (!junk.length) {
       response.status(404).send({
         error: 'There are no items with that type of cleanliness'
       })
     } else {
-      response.status(200).json(junk.length)
+      response.status(200).json(junk.length);
     }
   })
   .catch(error => {
-    response.status(500).send({ error })
-  })
-})
+    response.status(500).send({ error });
+  });
+});
 
 // ======================================================================
 // POST request for adding that junk
@@ -86,7 +86,7 @@ app.post('/api/v1/junk', (request, response) => {
   } else {
   database('junk').insert(junk)
     .then(junk => {
-      response.status(201).json({ name: name, reason: reason, cleanliness:cleanliness })
+      response.status(201).json({ name: name, reason: reason, cleanliness:cleanliness });
     })
     .catch(error => {
       response.status(500).send({ error });
@@ -104,22 +104,22 @@ app.get('/api/v1/sortup', (request, response) => {
     })
     .catch((error) => {
       response.status(500).send({ error })
-    })
-})
+    });
+});
 
 // sort reverse
 app.get('/api/v1/sortdown', (request, response) => {
   database('junk').select().orderBy('name', 'desc')
     .then((junk) => {
-      response.status(200).json(junk)
+      response.status(200).json(junk);
     })
     .catch((error) => {
-      response.status(500).send({ error })
-    })
-})
+      response.status(500).send({ error });
+    });
+});
 
 app.listen(app.get('port'), () => {
-  console.log(`Garage_bin is running on ${app.get('port')}.`)
+  console.log(`Garage_bin is running on ${app.get('port')}.`);
 });
 
 module.exports = app;

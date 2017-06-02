@@ -39,7 +39,7 @@ const getCount = () => {
     .then(response => response.json())
     .then(json => {
       document.querySelector('.count').innerHTML = json.length
-    })
+    });
 };
 
 const updateAllCounts = () => {
@@ -53,8 +53,8 @@ const getCountForCleanliness = (cleanliness) => {
   .then(response => response.json())
   .then(count => {
       document.querySelector(`.${cleanliness}-count`).innerHTML = count
-    })
-  }
+    });
+  };
 
 // =======================================================================
 // Get items from DB
@@ -63,10 +63,10 @@ const getSingleItem = (name) => {
   .then(response => response.json())
   .then(item => {
     item.forEach((details) => {
-      appendFullItemDetails(details.name, details.reason, details.cleanliness)
+      appendFullItemDetails(details.name, details.reason, details.cleanliness);
     })
   })
-  .catch(e => console.log('Unable to get a single item'))
+  .catch(e => console.log('Unable to get a single item'));
 };
 
 const getAllItems = () => {
@@ -74,11 +74,11 @@ const getAllItems = () => {
   .then(response => response.json())
   .then(items => {
     items.map((item) => {
-      appendItemName(item.name)
+      appendItemName(item.name);
     })
   })
-  .catch(e => console.log('Unable to fetch items'))
-}
+  .catch(e => console.log('Unable to fetch items'));
+};
 
 // =======================================================================
 // Post item to DB
@@ -94,11 +94,11 @@ const addItem = (name, reason, cleanliness) => {
   })
   .then(response => response.json())
   .then((junk) => {
-    appendItemName(junk.name)
-    getCount()
-    updateAllCounts()
+    appendItemName(junk.name);
+    getCount();
+    updateAllCounts();
   })
-  .catch(e => console.log('Cannot append items'))
+  .catch(e => console.log('Cannot append items'));
 };
 
 // =======================================================================
@@ -124,7 +124,7 @@ const appendFullItemDetails = (name, reason, cleanliness) => {
       <h3 class='item-cleanliness'>${cleanliness}</h3>
     </div>
   `)
-}
+};
 
 // =======================================================================
 // Sorting list items
@@ -136,8 +136,8 @@ const sortUp = () => {
       appendItemName(junk.name)
     })
   })
-  .catch(e => console.log('whatever'))
-}
+  .catch(e => console.log('Sorting is not working'))
+};
 
 const sortDown = () => {
   fetch('/api/v1/sortdown')
@@ -147,15 +147,15 @@ const sortDown = () => {
       appendItemName(junk.name)
     })
   })
-  .catch(e => console.log('whatever'))
-}
+  .catch(e => console.log('Sorting is not working'));
+};
 
 // =======================================================================
 // Clear Fields
 const clearInputs = () => {
-  $('.input-name').val('')
-  $('.input-linger').val('')
-  $('.cleanliness-selector').val('')
+  $('.input-name').val('');
+  $('.input-linger').val('');
+  $('.cleanliness-selector').val('');
 };
 
 const clearFullItemDetails = () => {
@@ -164,4 +164,4 @@ const clearFullItemDetails = () => {
 
 const clearGarage = () => {
   $('.garage-list').empty();
-}
+};

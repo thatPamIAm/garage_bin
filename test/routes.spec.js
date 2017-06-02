@@ -202,10 +202,10 @@ describe('All the tests', () => {
         .get('/api/v1/sortdownzzz')
         .end((error, response) => {
           response.should.have.status(404);
-          done()
+          done();
         });
-      })
-    })
+      });
+    });
 
-  })
-})
+  });
+});
