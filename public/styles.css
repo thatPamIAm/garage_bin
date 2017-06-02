@@ -7,11 +7,12 @@ body, html {
 
 span {
   margin: 0px 10px;
-  font: 1em;
+  font-size: 1.5em;
 }
 
 h1 {
   font-size: 1.25em;
+  margin-top: 4px;
 }
 
 h3 {
@@ -22,7 +23,6 @@ input {
   font-size: 1em;
 }
 
-
 button {
   font-size: 1.25em;
   border: none;
@@ -31,6 +31,10 @@ button {
   background-color: #009BA8;
   color: white;
   margin: 20px;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 #page-wrap {
@@ -95,6 +99,11 @@ button {
 .main-item {
   display: block;
 }
+
 .item-name {
   font-size: 2em;
+}
+
+.list-item-name:hover {
+  cursor: pointer;
 }
