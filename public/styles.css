@@ -111,3 +111,71 @@ button:hover {
 .list-item-name:hover {
   cursor: pointer;
 }
+
+/*========================================================*/
+/*Garage door with CSS transition*/
+
+.tab-section {
+  border: 1px solid #D1D2D3;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.garage-input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.garage-input:checked ~ .panel {
+  max-height: 50em;
+  position: relative;
+}
+
+.garage-input:checked ~ label {
+  background: white;
+  color: #666;
+  font-weight: bold
+}
+
+.garage-input[type="radio"]:checked ~ label:after {
+  font-size: 13px;
+  color: #666;
+  float: right;
+  margin-left: 5px;
+}
+
+label {
+  position: relative;
+  display: block;
+  background: #009BA8;
+  line-height: 3;
+  text-align: center;
+  cursor: pointer;
+  color: #002F33;
+  border-bottom: 1px solid #D1D2D3;
+  border-top: 1px solid white;
+}
+
+label::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
+  color: #666;
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 3s;
+  -o-transition: max-height 3s;
+  transition: max-height 3s;
+}
