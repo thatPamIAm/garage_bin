@@ -1,11 +1,13 @@
-// Fetch from DB on page load
+// =================================================================
+// Fetch from DB on page load and update counts
 $(document).ready(() => {
   getAllItems();
   getCount();
   updateAllCounts();
 })
 
-// event listeners
+// ===================================================================
+// click event listeners
 $('.submit-button').on('click', (e) => {
   e.preventDefault();
   let $name = $('.input-name').val();
@@ -30,7 +32,8 @@ $('.sort-down').on('click', () => {
   sortDown();
 })
 
-// Get item count from DB
+// =======================================================================
+// Get all the counts
 const getCount = () => {
     fetch('/api/v1/junk')
     .then(response => response.json())
@@ -39,14 +42,12 @@ const getCount = () => {
     })
 };
 
-// Update all counts
 const updateAllCounts = () => {
   getCountForCleanliness('sparkling')
   getCountForCleanliness('rancid')
   getCountForCleanliness('dusty')
 };
 
-// Get counts based on cleanliness
 const getCountForCleanliness = (cleanliness) => {
   fetch(`/api/v1/junk/count/${cleanliness}`)
   .then(response => response.json())
@@ -55,7 +56,8 @@ const getCountForCleanliness = (cleanliness) => {
     })
   }
 
-// Get single item from DB
+// =======================================================================
+// Get items from DB
 const getSingleItem = (name) => {
   fetch(`/api/v1/junk/${name}`)
   .then(response => response.json())
@@ -67,7 +69,6 @@ const getSingleItem = (name) => {
   .catch(e => console.log('Unable to get a single item'))
 };
 
-// Get all the items in DB
 const getAllItems = () => {
   fetch('/api/v1/junk')
   .then(response => response.json())
@@ -79,7 +80,8 @@ const getAllItems = () => {
   .catch(e => console.log('Unable to fetch items'))
 }
 
-// Add a single item to DB
+// =======================================================================
+// Post item to DB
 const addItem = (name, reason, cleanliness) => {
   fetch('/api/v1/junk', {
     method: 'POST',
@@ -99,11 +101,12 @@ const addItem = (name, reason, cleanliness) => {
   .catch(e => console.log('Cannot append items'))
 };
 
-// Append single item to the DOM
+// =======================================================================
+// Append to the DOM
 const appendItemName = (name) => {
   $('.garage-list').append(`
     <div>
-      <h3 class='item-name'>${name}</h3>
+      <h3 class='list-item-name item-name'>${name}</h3>
     </div>
   `)
 };
@@ -123,6 +126,7 @@ const appendFullItemDetails = (name, reason, cleanliness) => {
   `)
 }
 
+// =======================================================================
 // Sorting list items
 const sortUp = () => {
   fetch('/api/v1/sortup')
@@ -146,6 +150,7 @@ const sortDown = () => {
   .catch(e => console.log('whatever'))
 }
 
+// =======================================================================
 // Clear Fields
 const clearInputs = () => {
   $('.input-name').val('')
