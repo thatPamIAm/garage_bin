@@ -7,7 +7,7 @@ As a requirement to graduate from the FE program at Turing, all students are req
 Link for deployed application:
 [Garage Bin](https://garagebin.herokuapp.com/)
 
-Students were required to obtain scores of 3 or above in all rubric categories in order to pass.
+Students arere required to obtain scores of 3 or above in all rubric categories in order to pass. See more detailed rubric below:
 
 # Rubric:
 ## Garage Bin
