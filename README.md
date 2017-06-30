@@ -1,6 +1,6 @@
 ## 10 Hour Coding Final
 
-As a requirement to graduate from the FE program at Turing, all students were required to build a complete CRUD app from scratch with a Node.js/Express BE in under ten hours.
+As a requirement to graduate from the FE program at Turing, all students are required to build a complete CRUD app from scratch with a Node.js/Express BE in under ten hours.
 
 ![Imgur](http://i.imgur.com/FgtCSFY.png)
 
